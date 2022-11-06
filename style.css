@@ -8,16 +8,24 @@
     font-size: 62.5%;
 
     --ff-primary: 'Poppins', sans-serif;
-    --text-color: #303030;
-
-    --hue: 194;
-    --primary-color: hsl(var(--hue), 100%, 63%);
+    --text-color: #ffffff;
+    --background: #000000;
+    --favorites: #166884;
+    --table-header: #092D38;
+    --decoration: #06181C;
+    --t1: #030B0D;
+    --t2: #06181C;
+    --th: #092D38;
+    --text-content: #4E5455;
+    --row: #4A808C;
+    --row-top: #27474f;
+    --remove: #F75A68;
 }
 
 body {
     font-size: 1.6rem;
     color: var(--text-color);
-    background-color: rgb(250, 254, 255);
+    background-color: var(--background);
 }
 
 body * {
@@ -38,7 +46,7 @@ body * {
 
 #app {
     padding: 2rem;
-    max-width: 500px;
+    width: min(1000px, 95vw);
     margin: 0 auto;
 }
 
@@ -62,30 +70,53 @@ header h1 {
 
 .search input {
     height: 3.2rem;
-    border: 1px solid #ccc;
-    border-radius: .4rem 0 0 .4rem;
+    border: none;
+    border-radius:     .4rem;
     padding: 0 .8rem;
+    width: 350px;
+    background: var(--table-header);
+    color: #7C7C8A;
+}
+.search input::placeholder{
+    color: #7C7C8A;
 }
 
+
 .search button {
-    background-color: var(--primary-color);
-    border-radius: 0 .4rem .4rem 0;
+    background-color: var(--favorites);
+    border-radius: .4rem;
     height: 3.2rem;
     border: none;
-    padding: 0 1rem;
+    margin-left:4px;
+    padding: 3px 20px 3px 40px;
+    color: var(--text-color);
 
     cursor: pointer;
 }
 
-.search button:hover {
-    filter: brightness(1.1)
+.btn{
+    position: relative;
 }
+.btn svg{
+    position: absolute;
+    left: 19px;
+    top: 2px;
+    width: 20px;
+}
+/* .btn:hover button{
+    background-color: var(--text-color);
+    color: var(--favorites);
+} */
+/* .search button:hover {
+    filter: brightness(1.1)
+} */
 
 table {
     width: 100%;
     border-collapse: collapse;
 
     box-shadow: 0 1rem 2rem -1rem rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
 }
 
 table * {
@@ -94,26 +125,28 @@ table * {
 }
 
 table th {
-    background: var(--primary-color);
+    background: var(--th);
     text-align: left;
     font-weight: normal;
     padding: 1.5rem;
 }
 
 table th:first-child {
-    border-top-left-radius: .4rem;
+    border-top-left-radius: 10px;
 }
 
 table th:last-child {
-    border-top-right-radius: .4rem;
+    border-top-right-radius: 10px;
 }
 
 table tr:nth-child(even) {
-    background: #eee;
+    background: var(--t2);
+    border-top:1px solid var(--row);
+    border-bottom: 1px solid var(--row-top);
 }
 
 table tr:nth-child(odd) {
-    background: #ddd;
+    background: var(--t1);
 }
 
 table td {
@@ -148,6 +181,27 @@ td .remove {
     background: none;
     border: none;
 
-    color: red;
+    color: var(--remove);
     cursor: pointer;
+}
+
+.noList{
+    background-color: var(--t2);
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.noListContent{
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+.noListContent h1{
+    color: var(--text-content);
+    font-size: 40px;
+    font-weight: bold;
+}
+.hidden{
+    display: none;
 }

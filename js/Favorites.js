@@ -10,13 +10,22 @@ export class Favorites{
         this.tbody = this.root.querySelector('table tbody')
 
         this.load()
+        this.removedNoList()
 
         githubUser.search('Jonatank28').then(user => user.user)
     }
         // Vai guardar as informações no localStorage
     load(){
         this.entries = JSON.parse(localStorage.getItem('@github-favorites:')) || []
-
+    }
+    removedNoList(){
+        const noList = document.querySelector('.noList')
+        let qtd = this.entries.length
+        if(qtd > 0){
+            noList.classList.add('hidden')
+        }else {
+            noList.classList.remove('hidden')
+        }       
     }
 
     save(){
@@ -42,6 +51,7 @@ export class Favorites{
             this.entries = [user, ...this.entries]
             this.update()
             this.save()
+            this.removedNoList()
 
         } catch(error){
             alert(error.message)
@@ -55,6 +65,7 @@ export class Favorites{
             this.entries = filtereEntries
             this.update()
             this.save()
+            this.removedNoList()
         }
 
 }
@@ -117,7 +128,7 @@ export class FavoritesView extends Favorites{
                 9589
             </td>
             <td>
-                <button class="remove">&times;</button>
+                <button class="remove">Remover</button>
             </td>
         `
         return tr
